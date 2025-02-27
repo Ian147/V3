@@ -1,21 +1,23 @@
-import asyncio
+import requests
 from telegram import Bot
 
-# Masukkan TOKEN BOT dari BotFather
-BOT_TOKEN = "8011128170:AAEvCJrvMRinnIsInJmqLjzpWguz88tPWVw"
+# Token dan Chat ID Telegram
+BOT_TOKEN = "GANTI_DENGAN_TOKEN_BOT"
+CHAT_ID = "GANTI_DENGAN_CHAT_ID"
 
-# Masukkan Chat ID kamu
-CHAT_ID = "681125756"
+# Fungsi untuk mendapatkan harga BTC/USDT dari Binance
+def get_price():
+    url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
+    response = requests.get(url)
+    data = response.json()
+    return data.get("price", "Tidak ada harga ditemukan!")
 
-async def send_signal(signal):
-    """Mengirim pesan sinyal ke Telegram secara async."""
+# Fungsi untuk mengirim pesan ke Telegram
+def send_signal():
     bot = Bot(token=BOT_TOKEN)
-    await bot.send_message(chat_id=CHAT_ID, text=signal)
+    price = get_price()
+    message = f"💰 Harga BTC/USDT saat ini: ${price}"
+    bot.send_message(chat_id=CHAT_ID, text=message)
 
-async def main():
-    """Fungsi utama untuk menjalankan bot."""
-    signal = "📢 Sinyal terbaru dari bot!"
-    await send_signal(signal)
-
-# Jalankan event loop
-asyncio.run(main())
+# Jalankan fungsi kirim sinyal
+send_signal()
