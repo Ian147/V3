@@ -2,8 +2,8 @@ import requests
 from telegram import Bot
 
 # Token dan Chat ID Telegram
-BOT_TOKEN = "GANTI_DENGAN_TOKEN_BOT"
-CHAT_ID = "GANTI_DENGAN_CHAT_ID"
+BOT_TOKEN = "8011128170:AAEvCJrvMRinnIsInJmqLjzpWguz88tPWVw"
+CHAT_ID = "681125756"
 
 # Fungsi untuk mendapatkan harga BTC/USDT dari Binance
 def get_price():
