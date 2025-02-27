@@ -1,4 +1,5 @@
 import requests
+import asyncio
 from telegram import Bot
 
 # Token dan Chat ID Telegram
@@ -12,12 +13,12 @@ def get_price():
     data = response.json()
     return data.get("price", "Tidak ada harga ditemukan!")
 
-# Fungsi untuk mengirim pesan ke Telegram
-def send_signal():
+# Fungsi async untuk mengirim pesan ke Telegram
+async def send_signal():
     bot = Bot(token=BOT_TOKEN)
     price = get_price()
     message = f"💰 Harga BTC/USDT saat ini: ${price}"
-    bot.send_message(chat_id=CHAT_ID, text=message)
+    await bot.send_message(chat_id=CHAT_ID, text=message)
 
-# Jalankan fungsi kirim sinyal
-send_signal()
+# Jalankan fungsi dengan asyncio
+asyncio.run(send_signal())
