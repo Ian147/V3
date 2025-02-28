@@ -4,7 +4,7 @@ import tensorflow as tf
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
 from sklearn.preprocessing import StandardScaler
-import talib
+import pandas_ta as ta
 
 # **1. Load Model LSTM**
 model = tf.keras.models.load_model("lstm_model.keras")
@@ -17,10 +17,10 @@ volume = np.random.rand(seq_length) * 100000  # Data volume acak
 df = pd.DataFrame({"Close": last_prices, "Volume": volume})
 
 # **3. Hitung Indikator Teknis**
-df["EMA_10"] = talib.EMA(df["Close"], timeperiod=10)
-df["EMA_50"] = talib.EMA(df["Close"], timeperiod=50)
-df["RSI_14"] = talib.RSI(df["Close"], timeperiod=14)
-df["ATR"] = talib.ATR(df["Close"], df["Close"], df["Close"], timeperiod=14)  # Volatilitas
+df["EMA_10"] = ta.ema(df["Close"], length=10)
+df["EMA_50"] = ta.ema(df["Close"], length=50)
+df["RSI_14"] = ta.rsi(df["Close"], length=14)
+df["ATR"] = ta.atr(df["Close"], df["Close"], df["Close"], length=14)  # Volatilitas
 
 # **4. Prediksi Harga Menggunakan LSTM**
 scaler = StandardScaler()
