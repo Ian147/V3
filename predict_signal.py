@@ -9,7 +9,7 @@ from xgboost import XGBRegressor
 from sklearn.preprocessing import StandardScaler
 import requests
 
-# API Key Binance (GANTI dengan API Key Anda)
+# API Key tai (GANTI dengan API Key Anda)
 API_KEY = "JryFhqvCFpXLzHtinwqY4zzRqNZhX9uUvRme0fpJ5In6tj4tv2HAGEnZcpFdWDuH"
 API_SECRET = "ZFrepyWy3QtgfCN0V20KgkMt0zQ8uUsIoLUYeGowGUi6MAPvJHQsIghnhkutDAaj"
 
